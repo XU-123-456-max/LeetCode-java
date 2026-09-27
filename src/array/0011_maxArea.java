@@ -1,0 +1,41 @@
+package src.array;
+/*
+ * @lc app=leetcode.cn id=11 lang=java
+ *
+ * [11] 盛最多水的容器
+ */
+
+// @lc code=start
+class Solution {
+    public int maxArea(int[] height) {
+        int r = height.length - 1;
+        int l = 0;
+        int ans = 0;
+        while(l < r){
+            int area = Math.min(height[r], height[l]) * (r - l);
+            if(ans < area){
+                ans = area;
+            }
+            if(height[l] <= height[r]){
+                l++;
+            }else{
+                r--;
+            }
+        }
+        return ans;
+    }
+}
+// @lc code=end
+/*
+class Solution {
+    public int maxArea(int[] height) {
+        int i = 0, j = height.length - 1, res = 0;
+        while(i < j) {
+            res = height[i] < height[j] ? 
+                Math.max(res, (j - i) * height[i++]): 
+                Math.max(res, (j - i) * height[j--]); 
+        }
+        return res;
+    }
+}
+ */
