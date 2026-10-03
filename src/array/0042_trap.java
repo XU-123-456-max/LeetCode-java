@@ -27,6 +27,7 @@ class Solution {
 }
 // @lc code=end
 /*
+动态规划
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
@@ -48,6 +49,35 @@ class Solution {
             ans += Math.max(0,level - height[i]);
         }
         return ans;
+    }
+}
+    
+单调栈
+class Solution {
+    public int trap(int[] height) {
+        if(height == null || height.length <= 2){
+            return 0;
+        }
+
+        int water = 0;
+        Stack<Integer> stack = new Stack<>();
+        for(int right = 0;right < height.length;right++){
+            while(!stack.isEmpty() && height[right] > height[stack.peek()]){
+                int bottom = stack.pop();
+                if(stack.isEmpty()){
+                    break;
+                }
+
+                int left = stack.peek();
+                int leftHeight = height[left];
+                int rightHeight = height[right];
+                int bottomHeight = height[bottom];
+
+                water += (right - left - 1) * (Math.min(height[left], height[right]) - bottomHeight);
+            }
+            stack.push(right);
+        }
+        return water;
     }
 }
 */
