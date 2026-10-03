@@ -1,4 +1,3 @@
-package src.array;
 /*
  * @lc app=leetcode.cn id=1 lang=java
  *
